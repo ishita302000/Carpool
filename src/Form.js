@@ -1,20 +1,21 @@
-import React,{Component} from "react";
+import React, { Component } from "react";
+import Bookride from "./Bookride";
+import RiderOffer from "./RiderOffer";
 import SignForm from "./SignForm";
-import {Link} from 'react-router-dom';
-class Form extends Component{
-       render(){
-           return(
-               <div>
-                   <h1>Form Page </h1>
-                   <Link to={'/SignForm'}> 
-     
-         <button className="nextBtn">
-         Submit
-         </button>
-         </Link>
-                <button> button</button>
-               </div>
-           );
-       }
+
+
+class Form extends Component
+{
+    render()
+    {
+        return(
+        <div>
+           <h2>Lets start</h2>
+           <Bookride/>
+          
+        
+        </div>
+     );
+    }
 }
 export default Form;
