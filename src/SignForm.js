@@ -1,7 +1,9 @@
 import {React , Link} from 'react'
 import { useState } from 'react';
-import Login from "./LoginForm";
+import LogIn from "./LoginForm";
 import './Form.css';
+import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const FormSignup = () => {
 
@@ -18,6 +20,7 @@ const FormSignup = () => {
   const[  list , setList] =  useState(initialList);
   const[email_ , setemail] = useState('');
   const[password_ , setpassword] = useState('');
+  const[isAuth , setIsAuth] = useState(true);
   
 
   function handleChange(event)
@@ -34,10 +37,22 @@ const FormSignup = () => {
   {
            
           const newList = list.concat({ email:email_  , password : password_  }); 
-          setList(newList); 
+          if(newList.length>2 || newList != null )
+          {
+          setList(newList);
+          setIsAuth(false);
+          }
+          // navigate to Rider Offer  
         //  setemail('');
           //setpassword('');
+         
   }
+  if(!isAuth)
+  {
+    return <Redirect to='/RiderOffer' />
+  }
+
+  
 
   return (
     <div className="form-content-right">
@@ -59,12 +74,9 @@ const FormSignup = () => {
            <input id="password" type="password" name="password" className="form-input" placeholder='Enter your password' value1={password_}
            onChange={handleChange_} />         
         </div> 
-
-       
-
        <button className='form-input-btn' type='button' onClick={handleAdd}> Sign up</button> 
        <span className='form-input-login'>
-         Already have an account ? Login   
+         Already have an account ? <NavLink exact activeClassName="active" to="/LoginForm">LogIn</NavLink> 
        </span>
       </form>
     </div>  
